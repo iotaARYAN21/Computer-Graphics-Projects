@@ -1,0 +1,3 @@
+/home/iotaaryan/Documents/Computer Graphics/Lab2-Triangle/build/CMakeFiles/main.dir
+/home/iotaaryan/Documents/Computer Graphics/Lab2-Triangle/build/CMakeFiles/edit_cache.dir
+/home/iotaaryan/Documents/Computer Graphics/Lab2-Triangle/build/CMakeFiles/rebuild_cache.dir
