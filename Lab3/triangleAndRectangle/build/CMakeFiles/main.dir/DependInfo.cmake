@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/iotaaryan/Documents/Computer Graphics/Lab3/rectangle.cpp" "CMakeFiles/main.dir/rectangle.cpp.o" "gcc" "CMakeFiles/main.dir/rectangle.cpp.o.d"
+  "/home/iotaaryan/Documents/Computer Graphics/Lab3/triangleAndRectangle/combined.cpp" "CMakeFiles/main.dir/combined.cpp.o" "gcc" "CMakeFiles/main.dir/combined.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

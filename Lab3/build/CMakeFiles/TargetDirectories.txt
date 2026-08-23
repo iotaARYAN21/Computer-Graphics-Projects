@@ -1,3 +1,0 @@
-/home/iotaaryan/Documents/Computer Graphics/Lab3/build/CMakeFiles/main.dir
-/home/iotaaryan/Documents/Computer Graphics/Lab3/build/CMakeFiles/edit_cache.dir
-/home/iotaaryan/Documents/Computer Graphics/Lab3/build/CMakeFiles/rebuild_cache.dir

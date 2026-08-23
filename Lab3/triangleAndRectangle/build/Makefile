@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/home/iotaaryan/Documents/Computer Graphics/Lab3"
+CMAKE_SOURCE_DIR = "/home/iotaaryan/Documents/Computer Graphics/Lab3/triangleAndRectangle"
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/home/iotaaryan/Documents/Computer Graphics/Lab3/build"
+CMAKE_BINARY_DIR = "/home/iotaaryan/Documents/Computer Graphics/Lab3/triangleAndRectangle/build"
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/iotaaryan/Documents/Computer Graphics/Lab3/build/CMakeFiles" "/home/iotaaryan/Documents/Computer Graphics/Lab3/build//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/iotaaryan/Documents/Computer Graphics/Lab3/triangleAndRectangle/build/CMakeFiles" "/home/iotaaryan/Documents/Computer Graphics/Lab3/triangleAndRectangle/build//CMakeFiles/progress.marks"
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/iotaaryan/Documents/Computer Graphics/Lab3/build/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/iotaaryan/Documents/Computer Graphics/Lab3/triangleAndRectangle/build/CMakeFiles" 0
 .PHONY : all
 
 # The main clean target
@@ -129,29 +129,29 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-rectangle.o: rectangle.cpp.o
-.PHONY : rectangle.o
+combined.o: combined.cpp.o
+.PHONY : combined.o
 
 # target to build an object file
-rectangle.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/rectangle.cpp.o
-.PHONY : rectangle.cpp.o
+combined.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/combined.cpp.o
+.PHONY : combined.cpp.o
 
-rectangle.i: rectangle.cpp.i
-.PHONY : rectangle.i
+combined.i: combined.cpp.i
+.PHONY : combined.i
 
 # target to preprocess a source file
-rectangle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/rectangle.cpp.i
-.PHONY : rectangle.cpp.i
+combined.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/combined.cpp.i
+.PHONY : combined.cpp.i
 
-rectangle.s: rectangle.cpp.s
-.PHONY : rectangle.s
+combined.s: combined.cpp.s
+.PHONY : combined.s
 
 # target to generate assembly for a file
-rectangle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/rectangle.cpp.s
-.PHONY : rectangle.cpp.s
+combined.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/combined.cpp.s
+.PHONY : combined.cpp.s
 
 # Help Target
 help:
@@ -162,9 +162,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
-	@echo "... rectangle.o"
-	@echo "... rectangle.i"
-	@echo "... rectangle.s"
+	@echo "... combined.o"
+	@echo "... combined.i"
+	@echo "... combined.s"
 .PHONY : help
 
 

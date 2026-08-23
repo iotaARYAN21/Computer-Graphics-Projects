@@ -1,32 +1,28 @@
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
 #include<iostream>
-#include<sstream>
 #include<fstream>
+#include<sstream>
 using namespace std;
-
 string readFile(const string& filePath){
     ifstream file(filePath);
     if(!file.is_open()){
         cerr<<"Could not open file\n";
         return "";
     }
-
     stringstream buffer;
-    buffer << file.rdbuf();
+    buffer<<file.rdbuf();
     return buffer.str();
 }
-
 void vertexShaderCompileLog(unsigned int vertexShader){
     int success;
-    char infoLog[512]; 
+    char infoLog[512];
     glGetShaderiv(vertexShader,GL_COMPILE_STATUS,&success);
     if(!success){
         glGetShaderInfoLog(vertexShader,512,NULL,infoLog);
-        cerr<<"Vertex shader compiler faild\n"<<infoLog<<endl;
+        cerr<<"Vertex shader compile failed\n"<<infoLog<<endl;
     }
 }
-
 void fragmentShaderCompileLog(unsigned int fragmentShader){
     int success;
     char infoLog[512];
@@ -46,24 +42,20 @@ void ShaderLinkingCheck(unsigned int shaderProgram){
         cerr<<"shaderProgram compiler faild\n"<<infoLog<<endl;
     }
 }
-
-
 int main(){
+
     if(!glfwInit())return -1;
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,3);
     glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(800,600,"Rectangle",NULL,NULL);
-
+    GLFWwindow* window = glfwCreateWindow(800,600,"Triangle & Rectangle",NULL,NULL);
     if(window == NULL){
         glfwTerminate();
         return -1;
     }
 
     glfwMakeContextCurrent(window);
-
-    glewExperimental = GL_TRUE;
     if(glewInit()!=GLEW_OK){
         cerr<<"Failed to initialize GLEW\n";
         glfwTerminate();
@@ -73,33 +65,46 @@ int main(){
     glViewport(0,0,800,600);
 
     float vertices[]={
-        0.5f,  0.5f, 0.0f, 0.95f,0.26f,0.21f,  // top right  a
-        0.5f, -0.5f, 0.0f,  0.98f,0.49f,0.13f, // bottom right  b
-        -0.5f, -0.5f, 0.0f, 0.59f,0.12f,0.51f, // bottom left  c
-        -0.5f,  0.5f, 0.0f , 1.00f,0.76f,0.03f // top left    d
+        -0.55f,0.9f,0.0f,
+        -0.9f,0.0f,0.0f,
+        -0.1f,0.0f,0.0f,
     };
 
-    unsigned int indices[] ={
-        0,1,3,
-        1,2,3
+    float rectangle[] = {
+        0.7f,  0.9f, 0.0f,   // top right  a
+        0.7f, 0.0f, 0.0f,  // bottom right  b
+        0.1f, 0.0f, 0.0f,  // bottom left  c
+        0.1f,  0.9f, 0.0f  // top left d
     };
-
-    unsigned int VAO,VBO,EBO;
-    glGenVertexArrays(1,&VAO);
-    glGenBuffers(1,&VBO);
+    unsigned int indices[]={
+        0,1,2,
+        0,2,3
+    };
+    unsigned int VBO1,VAO1,VBO2,VAO2,EBO;
+    glGenVertexArrays(1,&VAO1);
+    glGenVertexArrays(1,&VAO2);
+    glGenBuffers(1,&VBO1);
+    glGenBuffers(1,&VBO2);
     glGenBuffers(1,&EBO);
-
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER,VBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
-
+    glBindVertexArray(VAO1);
+    glBindBuffer(GL_ARRAY_BUFFER,VBO1);
     glBufferData(
         GL_ARRAY_BUFFER,
         sizeof(vertices),
         vertices,
         GL_STATIC_DRAW
     );
-
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,3*sizeof(float),(void*)0);
+    glEnableVertexAttribArray(0);
+    glBindVertexArray(VAO2);
+    glBindBuffer(GL_ARRAY_BUFFER,VBO2);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,EBO);
+    glBufferData(
+        GL_ARRAY_BUFFER,
+        sizeof(rectangle),
+        rectangle,
+        GL_STATIC_DRAW
+    );
     glBufferData(
         GL_ELEMENT_ARRAY_BUFFER,
         sizeof(indices),
@@ -107,20 +112,20 @@ int main(){
         GL_STATIC_DRAW
     );
 
-
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,3*sizeof(float),(void*)0);
+    glEnableVertexAttribArray(0);
+    
     string vertexShaderSource = readFile("vertexShader.glsl");
-
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     const char* vertexShaderCode = vertexShaderSource.c_str();
 
     glShaderSource(vertexShader,1,&vertexShaderCode,NULL);
     glCompileShader(vertexShader);
-
     vertexShaderCompileLog(vertexShader);
 
     string fragmentShaderSource = readFile("fragmentShader.glsl");
     unsigned int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    
+
     const char* fragmentShaderCode = fragmentShaderSource.c_str();
     glShaderSource(fragmentShader,1,&fragmentShaderCode,NULL);
 
@@ -139,27 +144,28 @@ int main(){
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)0);
-    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3*sizeof(float)));
-    glEnableVertexAttribArray(0);
-    glEnableVertexAttribArray(1);
-
     while(!glfwWindowShouldClose(window)){
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glUseProgram(shaderProgram);
-        glBindVertexArray(VAO);
+        glBindVertexArray(VAO1);
+        glDrawArrays(GL_TRIANGLES,0,3);
+
+        glBindVertexArray(VAO2);
+        glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
         glDrawElements(GL_TRIANGLES,6,GL_UNSIGNED_INT,0);
-        glBindVertexArray(0);
+        glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
         glfwSwapBuffers(window);
-        glfwPollEvents();   
+        glfwPollEvents();
     }
 
-    glDeleteVertexArrays(1,&VAO);
-    glDeleteBuffers(1,&VBO);
+    glDeleteVertexArrays(1,&VAO1);
+    glDeleteBuffers(1,&VBO1);
+    glDeleteVertexArrays(1,&VAO2);
+    glDeleteBuffers(1,&VBO2);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
+
     glfwTerminate();
-
-
 
 }
