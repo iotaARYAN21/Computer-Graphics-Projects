@@ -25,7 +25,7 @@ int main(int argc,char* argv[]){
         auto openGLVersion =glGetString(GL_VERSION);
         string glfwVersion = to_string(glfwMajor)+"."+to_string(glfwMinor)+"."+to_string(glfwRev);
         
-        glColor3f(1.,0.,0.);
+        glColor3f(0.,1.,0.);
         int len1 = strlen(reinterpret_cast<const char*>(glewVersion));
         int len2 = strlen(reinterpret_cast<const char*>(openGLVersion));
         int len3 = glfwVersion.length();
