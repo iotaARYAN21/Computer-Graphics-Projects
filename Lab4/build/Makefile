@@ -153,6 +153,30 @@ cube.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/cube.cpp.s
 .PHONY : cube.cpp.s
 
+shadersUtil.o: shadersUtil.cpp.o
+.PHONY : shadersUtil.o
+
+# target to build an object file
+shadersUtil.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/shadersUtil.cpp.o
+.PHONY : shadersUtil.cpp.o
+
+shadersUtil.i: shadersUtil.cpp.i
+.PHONY : shadersUtil.i
+
+# target to preprocess a source file
+shadersUtil.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/shadersUtil.cpp.i
+.PHONY : shadersUtil.cpp.i
+
+shadersUtil.s: shadersUtil.cpp.s
+.PHONY : shadersUtil.s
+
+# target to generate assembly for a file
+shadersUtil.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/shadersUtil.cpp.s
+.PHONY : shadersUtil.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... cube.o"
 	@echo "... cube.i"
 	@echo "... cube.s"
+	@echo "... shadersUtil.o"
+	@echo "... shadersUtil.i"
+	@echo "... shadersUtil.s"
 .PHONY : help
 
 

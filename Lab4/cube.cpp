@@ -1,55 +1,12 @@
 #include<GL/glew.h>
 #include<GLFW/glfw3.h>
-// #include <glm/glm.hpp>
+#include "shadersUtil.h"
 #include<iostream>
-#include<fstream>
-#include<sstream>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 using namespace std;
 
-string readFile(const string& filePath){
-    ifstream file(filePath);
-    if(!file.is_open()){
-        cerr<<"Could not open file\n";
-        return "";
-    }
-
-    stringstream buffer;
-    buffer << file.rdbuf();
-    return buffer.str();
-}
-
-void vertexShaderCompileLog(unsigned int vertexShader){
-    int success;
-    char infoLog[512]; 
-    glGetShaderiv(vertexShader,GL_COMPILE_STATUS,&success);
-    if(!success){
-        glGetShaderInfoLog(vertexShader,512,NULL,infoLog);
-        cerr<<"Vertex shader compiler faild\n"<<infoLog<<endl;
-    }
-}
-
-void fragmentShaderCompileLog(unsigned int fragmentShader){
-    int success;
-    char infoLog[512];
-    glGetShaderiv(fragmentShader,GL_COMPILE_STATUS,&success);
-    if(!success){
-        glGetShaderInfoLog(fragmentShader,512,NULL,infoLog);
-        cerr<<"Fragment shader compile failed\n"<<infoLog<<endl;
-    }
-}
-
-void ShaderLinkingCheck(unsigned int shaderProgram){
-    int success;
-    char infoLog[512];
-    glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-    if(!success){
-        glGetProgramInfoLog(shaderProgram,512,NULL,infoLog);
-        cerr<<"shaderProgram compiler faild\n"<<infoLog<<endl;
-    }
-}
 
 
 int main(){
@@ -75,41 +32,30 @@ int main(){
     glViewport(0,0,800,600);
 
     float nodes[] = {
-
-       
         0.5f,  0.5f, -0.5f,     1.0f, 0.0f, 0.0f, // a
         -0.5f,  0.5f, -0.5f,     1.0f, 0.0f, 0.0f, // b
         -0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f, // c
         0.5f, -0.5f, -0.5f,     1.0f, 0.0f, 0.0f, // d
 
-
-    
         0.5f,  0.5f, 0.5f,     0.0f, 1.0f, 0.0f, // e
         -0.5f,  0.5f, 0.5f,     0.0f, 1.0f, 0.0f, // f
         -0.5f, -0.5f, 0.5f,     0.0f, 1.0f, 0.0f, // g
         0.5f, -0.5f, 0.5f,     0.0f, 1.0f, 0.0f, // h
 
-
         -0.5f,  0.5f, -0.5f,     0.0f, 0.0f, 1.0f, // i
         -0.5f, -0.5f, -0.5f,     0.0f, 0.0f, 1.0f, // j
         -0.5f, -0.5f, 0.5f,     0.0f, 0.0f, 1.0f, // k
         -0.5f,  0.5f, 0.5f,     0.0f, 0.0f, 1.0f, // l
-
-
  
         0.5f,  0.5f, -0.5f,     1.0f, 1.0f, 0.0f, // m
         0.5f, -0.5f, -0.5f,     1.0f, 1.0f, 0.0f, // n
         0.5f, -0.5f, 0.5f,     1.0f, 1.0f, 0.0f, // o
         0.5f,  0.5f, 0.5f,     1.0f, 1.0f, 0.0f, // p
 
-
-
         0.5f,  0.5f, -0.5f,     1.0f, 0.0f, 1.0f, // q
         -0.5f,  0.5f, -0.5f,     1.0f, 0.0f, 1.0f, // r
         -0.5f,  0.5f, 0.5f,     1.0f, 0.0f, 1.0f, // s
         0.5f,  0.5f, 0.5f,     1.0f, 0.0f, 1.0f, // t
-
-
 
         0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 1.0f, // u
         -0.5f, -0.5f, -0.5f,     0.0f, 1.0f, 1.0f, // v
@@ -119,8 +65,6 @@ int main(){
 
 
     unsigned int indices[] = {
-
-
         0, 1, 2,
         0, 2, 3,
 
@@ -201,13 +145,6 @@ int main(){
     glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3*sizeof(float)));
     glEnableVertexAttribArray(0);
     glEnableVertexAttribArray(1);
-    // GLuint uniId = glGetUniformLocation(shaderProgram,"scale");
-
-
-    
-    // model = glm::rotate(model,glm::radians(30.0f),glm::vec3(0.0f,1.0f,0.0f));
-
-    
     
     float rotationX = 0.0f;
     float rotationY = 0.0f;
@@ -220,27 +157,12 @@ int main(){
     );
     
     int viewLoc = glGetUniformLocation(shaderProgram,"view");
-    glUniformMatrix4fv(
-        viewLoc,
-        1,
-        GL_FALSE,
-        glm::value_ptr(view)
-    );
+    glUniformMatrix4fv(viewLoc,1,GL_FALSE,glm::value_ptr(view));
     
-    glm::mat4 projection  = glm::perspective(
-        glm::radians(45.0f),
-        800.0f/600.0f,
-        0.1f,
-        100.0f
-    );
+    glm::mat4 projection  = glm::perspective(glm::radians(45.0f),800.0f/600.0f,0.1f,100.0f);
     
     int projectionLoc = glGetUniformLocation(shaderProgram,"projection");
-    glUniformMatrix4fv(
-        projectionLoc,
-        1,
-        GL_FALSE,
-        glm::value_ptr(projection)
-    );
+    glUniformMatrix4fv(projectionLoc,1,GL_FALSE,glm::value_ptr(projection));
     
     int modelLoc = glGetUniformLocation(shaderProgram,"model");
     
