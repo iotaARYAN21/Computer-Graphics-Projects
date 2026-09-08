@@ -191,6 +191,8 @@ int main(){
         // glUniform1f(uniId,0.2f);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES,36,GL_UNSIGNED_INT,0);
+        glPointSize(6.0f);
+        glDrawArrays(GL_POINTS, 0, 24);
         glBindVertexArray(0);
         glfwSwapBuffers(window);
         glfwPollEvents();

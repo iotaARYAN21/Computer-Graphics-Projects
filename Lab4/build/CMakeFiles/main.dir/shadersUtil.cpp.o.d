@@ -24,10 +24,10 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/stdint-least.h /usr/include/GL/glu.h \
- /usr/include/GL/gl.h /usr/include/GLFW/glfw3.h \
- /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
- /usr/include/c++/13/ostream /usr/include/c++/13/ios \
- /usr/include/c++/13/iosfwd /usr/include/c++/13/bits/stringfwd.h \
+ /usr/include/GL/gl.h /usr/include/c++/13/iostream \
+ /usr/include/c++/13/bits/requires_hosted.h /usr/include/c++/13/ostream \
+ /usr/include/c++/13/ios /usr/include/c++/13/iosfwd \
+ /usr/include/c++/13/bits/stringfwd.h \
  /usr/include/c++/13/bits/memoryfwd.h /usr/include/c++/13/bits/postypes.h \
  /usr/include/c++/13/cwchar /usr/include/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/floatn.h \

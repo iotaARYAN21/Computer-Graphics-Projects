@@ -215,7 +215,6 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/include/c++/13/bits/basic_string.tcc \
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
-  /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
@@ -225,7 +224,6 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/include/c++/13/bits/exception.h \
   /usr/include/c++/13/bits/exception_defines.h \
   /usr/include/c++/13/bits/exception_ptr.h \
-  /usr/include/c++/13/bits/fstream.tcc \
   /usr/include/c++/13/bits/functexcept.h \
   /usr/include/c++/13/bits/functional_hash.h \
   /usr/include/c++/13/bits/hash_bytes.h \
@@ -254,7 +252,6 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/specfun.h \
-  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/std_function.h \
   /usr/include/c++/13/bits/stl_algo.h \
@@ -304,7 +301,6 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/include/c++/13/ext/numeric_traits.h \
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
-  /usr/include/c++/13/fstream \
   /usr/include/c++/13/functional \
   /usr/include/c++/13/initializer_list \
   /usr/include/c++/13/ios \
@@ -315,7 +311,6 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
   /usr/include/c++/13/pstl/pstl_config.h \
-  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -436,10 +431,8 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/include/x86_64-linux-gnu/bits/wordsize.h \
   /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/atomic_word.h \
-  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
-  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h \
@@ -462,10 +455,10 @@ CMakeFiles/main.dir/cube.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab
   /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h
 
 CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graphics/Lab4/shadersUtil.cpp \
+  /home/iotaaryan/Documents/Computer\ Graphics/Lab4/shadersUtil.h \
   /usr/include/GL/gl.h \
   /usr/include/GL/glew.h \
   /usr/include/GL/glu.h \
-  /usr/include/GLFW/glfw3.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
@@ -665,6 +658,16 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
 
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h:
+
+/usr/include/c++/13/fstream:
+
+/usr/include/c++/13/bits/sstream.tcc:
+
+/usr/include/c++/13/bits/fstream.tcc:
+
+/usr/include/c++/13/bits/codecvt.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h:
@@ -687,8 +690,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/c++allocator.h:
 
-/usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h:
-
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
@@ -706,6 +707,10 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/c++/13/sstream:
+
+/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
@@ -803,10 +808,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 
 /usr/include/c++/13/stdexcept:
 
-/usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
-
-/usr/include/c++/13/sstream:
-
 /usr/include/c++/13/pstl/pstl_config.h:
 
 /usr/include/c++/13/ostream:
@@ -822,8 +823,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 /usr/include/c++/13/ios:
 
 /usr/include/c++/13/functional:
-
-/usr/include/c++/13/fstream:
 
 /usr/include/c++/13/ext/type_traits.h:
 
@@ -1079,8 +1078,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/quaternion_common.inl:
 
-/usr/include/c++/13/bits/sstream.tcc:
-
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/detail/type_mat3x2.inl:
 
 /usr/include/c++/13/ext/aligned_buffer.h:
@@ -1106,8 +1103,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/detail/type_mat3x3.hpp:
 
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/detail/type_vec4.hpp:
-
-/usr/include/c++/13/bits/fstream.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/wchar.h:
 
@@ -1286,10 +1281,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/matrix_clip_space.hpp:
 
 /usr/include/c++/13/bits/stl_algobase.h:
-
-/usr/include/c++/13/bits/stl_vector.h:
-
-/home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/matrix_clip_space.inl:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
 
@@ -1477,8 +1468,6 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 
 /usr/include/c++/13/bits/stl_pair.h:
 
-/usr/include/c++/13/bits/codecvt.h:
-
 /usr/include/c++/13/cassert:
 
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/matrix_float4x2.hpp:
@@ -1521,9 +1510,9 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 
 /usr/include/c++/13/bits/move.h:
 
-/usr/include/c++/13/bits/stl_uninitialized.h:
-
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/quaternion_double.hpp:
+
+/usr/include/c++/13/bits/stl_uninitialized.h:
 
 /usr/include/c++/13/bits/new_allocator.h:
 
@@ -1564,3 +1553,7 @@ CMakeFiles/main.dir/shadersUtil.cpp.o: /home/iotaaryan/Documents/Computer\ Graph
 /home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/vector_int3_sized.hpp:
 
 /usr/include/c++/13/bits/stl_tempbuf.h:
+
+/home/iotaaryan/Documents/Computer\ Graphics/Lab4/glm/glm/ext/matrix_clip_space.inl:
+
+/usr/include/c++/13/bits/stl_vector.h:
