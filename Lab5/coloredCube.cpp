@@ -9,61 +9,66 @@
 using namespace std;
 
 float nodes[] = {
-    // Front face
-    -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f,
-     0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f,
+    // x, y, z,      r, g, b
+    -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, // 0
+     0.5f, -0.5f,  0.5f,   0.0f, 1.0f, 0.0f, // 1
+     0.5f,  0.5f,  0.5f,   0.0f, 0.0f, 1.0f, // 2
+    -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 0.0f, // 3
 
-    -0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 0.0f,
-
-    // Back face
-    -0.5f, -0.5f, -0.5f,   0.0f, 0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,   0.0f, 0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,   0.0f, 0.0f, 1.0f,
-
-    -0.5f, -0.5f, -0.5f,   0.0f, 0.0f, 1.0f,
-    -0.5f,  0.5f, -0.5f,   0.0f, 0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,   0.0f, 0.0f, 1.0f,
-
-    // Top face
-    -0.5f,  0.5f,  0.5f,   0.0f, 1.0f, 0.0f,
-     0.5f,  0.5f,  0.5f,   0.0f, 1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 0.0f,
-
-    -0.5f,  0.5f,  0.5f,   0.0f, 1.0f, 0.0f,
-     0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,   0.0f, 1.0f, 0.0f,
-
-    // Bottom face
-    -0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,   0.0f, 1.0f, 1.0f,
-
-    -0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 1.0f,
-     0.5f, -0.5f,  0.5f,   0.0f, 1.0f, 1.0f,
-    -0.5f, -0.5f,  0.5f,   0.0f, 1.0f, 1.0f,
-
-    // Right face
-     0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 1.0f,
-     0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 1.0f,
-
-     0.5f, -0.5f,  0.5f,   1.0f, 0.0f, 1.0f,
-     0.5f,  0.5f, -0.5f,   1.0f, 0.0f, 1.0f,
-     0.5f,  0.5f,  0.5f,   1.0f, 0.0f, 1.0f,
-
-    // Left face
-    -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 0.0f,
-    -0.5f, -0.5f,  0.5f,   1.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 0.0f,
-
-    -0.5f, -0.5f, -0.5f,   1.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f,  0.5f,   1.0f, 1.0f, 0.0f,
-    -0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 0.0f
+    -0.5f, -0.5f, -0.5f,   1.0f, 0.0f, 1.0f, // 4
+     0.5f, -0.5f, -0.5f,   0.0f, 1.0f, 1.0f, // 5
+     0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 1.0f, // 6
+    -0.5f,  0.5f, -0.5f,   0.5f, 0.5f, 0.0f  // 7
 };
-unsigned int VAO, VBO;
+
+unsigned int indices[] = {
+    1, 2, 0,
+    2, 3, 0,
+
+    5, 6, 1,
+    6, 2, 1,
+
+    4, 7, 5,
+    7, 6, 5,
+
+    4, 0, 3,
+    7, 4, 3,
+
+    3, 2, 6,
+    7, 3, 6,
+
+    5, 1, 4,
+    1, 0, 4
+};
+
+unsigned int VAO, VBO, EBO;
+
+void changeNodeColor(int node, float rcol, float gcol, float bcol){
+    int colorIndex = node * 6 + 3;
+
+    nodes[colorIndex]     = rcol;
+    nodes[colorIndex + 1] = gcol;
+    nodes[colorIndex + 2] = bcol;
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+    glBufferSubData(
+        GL_ARRAY_BUFFER,
+        colorIndex * sizeof(float),
+        3 * sizeof(float),
+        &nodes[colorIndex]
+    );
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    cout << "Node " << node
+         << " changed to RGB: "
+         << rcol << " "
+         << gcol << " "
+         << bcol << endl;
+}
+
+// unsigned int VAO, VBO;
 
 void changeFaceColor(int face, float rcol, float gcol, float bcol){
     const int floatsPerVertex = 6;
@@ -123,10 +128,11 @@ int main(){
 
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
 
     glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(
         GL_ARRAY_BUFFER,
         sizeof(nodes),
@@ -134,26 +140,27 @@ int main(){
         GL_DYNAMIC_DRAW
     );
 
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(
+        GL_ELEMENT_ARRAY_BUFFER,
+        sizeof(indices),
+        indices,
+        GL_STATIC_DRAW
+    );
+
     glVertexAttribPointer(
-        0,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        6 * sizeof(float),
-        (void*)0
+        0, 3, GL_FLOAT, GL_FALSE,
+        6 * sizeof(float), (void*)0
     );
     glEnableVertexAttribArray(0);
 
     glVertexAttribPointer(
-        1,
-        3,
-        GL_FLOAT,
-        GL_FALSE,
-        6 * sizeof(float),
-        (void*)(3 * sizeof(float))
+        1, 3, GL_FLOAT, GL_FALSE,
+        6 * sizeof(float), (void*)(3 * sizeof(float))
     );
     glEnableVertexAttribArray(1);
 
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
     glEnable(GL_DEPTH_TEST);
@@ -242,29 +249,26 @@ int main(){
         if(glfwGetKey(window, GLFW_KEY_I) == GLFW_PRESS && !iPressed){
             iPressed = true;
 
-            int face;
-            float rcol, gcol, bcol;
+            int node;
+            float r, g, b;
 
-            cout << "Enter face number (1-6):\n";
-            cout << "1 = Front, 2 = Back, 3 = Top, 4 = Bottom, "
-                    "5 = Right, 6 = Left\n";
-            cin >> face;
+            cout << "Enter node number (0-7): ";
+            cin >> node;
 
-            if(face < 1 || face > 6){
-                cout << "Invalid face number\n";
-                
+            if(node < 0 || node > 7){
+                cout << "Invalid node number" << endl;
             }
             else{
                 cout << "Enter RGB values (0.0 - 1.0): ";
-                cin >> rcol >> gcol >> bcol;
+                cin >> r >> g >> b;
 
-                if(rcol < 0.0f || rcol > 1.0f ||
-                   gcol < 0.0f || gcol > 1.0f ||
-                   bcol < 0.0f || bcol > 1.0f){
-                    cout << "Invalid RGB values\n";
+                if(r < 0.0f || r > 1.0f ||
+                   g < 0.0f || g > 1.0f ||
+                   b < 0.0f || b > 1.0f){
+                    cout << "Invalid RGB values" << endl;
                 }
                 else{
-                    changeFaceColor(face, rcol, gcol, bcol);
+                    changeNodeColor(node, r, g, b);
                 }
             }
         }
@@ -294,7 +298,17 @@ int main(){
         );
 
         glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        glDrawElements(
+            GL_TRIANGLES,
+            36,
+            GL_UNSIGNED_INT,
+            0
+        );
+
+        glPointSize(5.0f);
+        glDrawArrays(GL_POINTS, 0, 8);
+
         glBindVertexArray(0);
 
         glfwSwapBuffers(window);
@@ -303,6 +317,7 @@ int main(){
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
     glDeleteProgram(shaderProgram);
     glfwTerminate();
 }
