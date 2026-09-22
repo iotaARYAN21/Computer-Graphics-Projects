@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/main.dir/link.d"
   "CMakeFiles/main.dir/coloredCube.cpp.o"
   "CMakeFiles/main.dir/coloredCube.cpp.o.d"
   "CMakeFiles/main.dir/shadersUtil.cpp.o"
