@@ -3,3 +3,5 @@
 *.zip
 Learning
 tutorialPDF
+build/
+glm/

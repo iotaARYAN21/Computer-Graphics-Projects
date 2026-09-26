@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/iotaaryan/Documents/Computer Graphics/Lab4/cube.cpp" "CMakeFiles/main.dir/cube.cpp.o" "gcc" "CMakeFiles/main.dir/cube.cpp.o.d"
   "/home/iotaaryan/Documents/Computer Graphics/Lab4/shadersUtil.cpp" "CMakeFiles/main.dir/shadersUtil.cpp.o" "gcc" "CMakeFiles/main.dir/shadersUtil.cpp.o.d"
+  "" "main" "gcc" "CMakeFiles/main.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

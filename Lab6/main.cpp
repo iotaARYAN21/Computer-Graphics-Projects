@@ -134,12 +134,26 @@ int main(){
     shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram,vertexShader);
     glAttachShader(shaderProgram,fragmentShader);
-
+    
     glLinkProgram(shaderProgram);
     ShaderLinkingCheck(shaderProgram);
-
+    
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+    
+    // point
+    // float point[] = { 0.0f, 0.0f, 0.0f }; 
+    // unsigned int pointVAO,pointVBO;
+    // glGenVertexArrays(1,&pointVAO);
+    // glGenBuffers(1,&pointVBO);
+    // glBindVertexArray(pointVAO);
+    // glBindBuffer(GL_ARRAY_BUFFER,pointVBO);
+    // glBufferData(GL_ARRAY_BUFFER, sizeof(point), point, GL_STATIC_DRAW);
+
+    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    // glEnableVertexAttribArray(0);
+
+    // point end
 
     glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)0);
     glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3*sizeof(float)));
@@ -148,16 +162,15 @@ int main(){
     
     float rotationX = 0.0f;
     float rotationY = 0.0f;
+    float rotationZ = 0.0f;
     glUseProgram(shaderProgram);
     
-    glm::mat4 view = glm::lookAt(
-        glm::vec3(0.0f,0.0f,3.0f),
-        glm::vec3(0.0f,0.0f,0.0f),
-        glm::vec3(0.0f,1.0f,0.0f)
-    );
+    // glm::mat4 view = glm::lookAt(
+    //     glm::vec3(0.0f,0.0f,3.0f),
+    //     glm::vec3(0.0f,0.0f,0.0f),
+    //     glm::vec3(0.0f,1.0f,0.0f)
+    // );
     
-    int viewLoc = glGetUniformLocation(shaderProgram,"view");
-    glUniformMatrix4fv(viewLoc,1,GL_FALSE,glm::value_ptr(view));
     
     glm::mat4 projection  = glm::perspective(glm::radians(45.0f),800.0f/600.0f,0.1f,100.0f);
     // if we not define the perspective and view then also it works why. -> perspective becomes bad , no clear near and far 
@@ -165,28 +178,72 @@ int main(){
     glUniformMatrix4fv(projectionLoc,1,GL_FALSE,glm::value_ptr(projection));
     
     int modelLoc = glGetUniformLocation(shaderProgram,"model");
+    glm::mat4 model = glm::mat4(1.0f);
+    glUniformMatrix4fv(modelLoc,1,GL_FALSE,glm::value_ptr(model));
+    bool xpress = false;
+    bool ypress = false;
+    bool zpress = false;
+
+    
+    glm::vec3 camCord(0.0f,0.f,3.0f);
+    int viewLoc = glGetUniformLocation(shaderProgram,"view");
     
     while(!glfwWindowShouldClose(window)){
         glClearColor(0.1f,0.1f,0.1f,1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         
-        if(glfwGetKey(window,GLFW_KEY_LEFT)==GLFW_PRESS){
-            rotationY -= 1.0f;
-        }
-        if(glfwGetKey(window,GLFW_KEY_RIGHT)==GLFW_PRESS){
+        
+        if(glfwGetKey(window,GLFW_KEY_W)==GLFW_PRESS && !ypress){
+            ypress=true;
             rotationY += 1.0f;
         }
-        if(glfwGetKey(window,GLFW_KEY_DOWN)==GLFW_PRESS){
-            rotationX += 1.0f;
+        if(glfwGetKey(window,GLFW_KEY_S)==GLFW_PRESS && !ypress){
+            ypress=true;
+            rotationY -= 1.0f;
         }
-        if(glfwGetKey(window,GLFW_KEY_UP)==GLFW_PRESS){
+        if(glfwGetKey(window,GLFW_KEY_A)==GLFW_PRESS && !xpress){
+            xpress=true;
+            rotationX += 1.0f;
+        }   
+        if(glfwGetKey(window,GLFW_KEY_D)==GLFW_PRESS && !xpress){
+            xpress = true;
             rotationX -= 1.0f;
         }
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::rotate(model,glm::radians(rotationX),glm::vec3(1.0f,0.0f,0.0f));
-        model = glm::rotate(model,glm::radians(rotationY),glm::vec3(0.0f,1.0f,0.0f));
+        if(glfwGetKey(window,GLFW_KEY_Z)==GLFW_PRESS && !zpress){
+            zpress = true;
+            rotationZ += 1.0f;
+        }
+        if(glfwGetKey(window,GLFW_KEY_C)==GLFW_PRESS && !zpress){
+            zpress = true;
+            rotationZ -= 1.0f;
+        }
+        
+        if(glfwGetKey(window,GLFW_KEY_W)==GLFW_RELEASE)ypress=false;
+        if(glfwGetKey(window,GLFW_KEY_S)==GLFW_RELEASE)ypress=false;
+        if(glfwGetKey(window,GLFW_KEY_A)==GLFW_RELEASE)xpress=false;
+        if(glfwGetKey(window,GLFW_KEY_D)==GLFW_RELEASE)xpress=false;
+        if(glfwGetKey(window,GLFW_KEY_Z)==GLFW_RELEASE)zpress=false;
+        if(glfwGetKey(window,GLFW_KEY_C)==GLFW_RELEASE)zpress=false;
+        
+        // glBindVertexArray(pointVAO);
+        // glDrawArrays(GL_POINTS, 0, 1); 
+        
+        glm::mat4 camRotation = glm::mat4(1.0f);
+
+        camRotation = glm::rotate(camRotation,glm::radians(rotationX),glm::vec3(1.0f,0.0f,0.0f));
+        camRotation = glm::rotate(camRotation,glm::radians(rotationY),glm::vec3(0.0f,1.0f,0.0f));
+        camRotation = glm::rotate(camRotation,glm::radians(rotationZ),glm::vec3(0.0f,0.0f,1.0f));
+        
+        glm::vec3 rotatedCamPos = glm::vec3(camRotation*glm::vec4(camCord,1.0f));
+        glm::vec3 up = glm::vec3(camRotation*glm::vec4(0.0f,1.0f,0.0f,0.0f));
+        glm::mat4 view = glm::lookAt(
+            rotatedCamPos,
+            glm::vec3(0.0f,0.0f,0.0f),
+            up
+        );
+        glUniformMatrix4fv(viewLoc,1,GL_FALSE,glm::value_ptr(view));
+
         // new model created so we need to point to it again
-        glUniformMatrix4fv(modelLoc,1,GL_FALSE,glm::value_ptr(model));
 
         // glUniform1f(uniId,0.2f);
         glBindVertexArray(VAO);

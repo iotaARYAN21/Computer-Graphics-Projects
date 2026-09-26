@@ -64,8 +64,9 @@ int main(){
     glfwMakeContextCurrent(window);
     
     glewExperimental = GL_TRUE;
-    if(glewInit()!=GLEW_OK){
-        cerr << "Failed to initialize GLEW\n";
+    GLenum err = glewInit();
+    if(err!=GLEW_OK){
+        cerr << "Failed to initialize GLEW\n"<<glewGetErrorString(err) << "\n";
         glfwTerminate();
         return -1;
     }
