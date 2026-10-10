@@ -50,10 +50,16 @@ int main(){
             float x = radius * sin(theta) * cos(phi);
             float y = radius * cos(theta);
             float z = radius * sin(theta) * sin(phi);
-            
+            // vertex position
             vertices.push_back(x);
             vertices.push_back(y);
             vertices.push_back(z);
+
+            // vertex normal position
+            vertices.push_back(x / radius);
+            vertices.push_back(y / radius);
+            vertices.push_back(z / radius);
+
         }
     }
 
@@ -139,9 +145,14 @@ int main(){
         GL_STATIC_DRAW
     );
 
-    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,3*sizeof(float),(void*)0);
+    glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)0);
 
     glEnableVertexAttribArray(0);
+
+    // vertex normal
+    glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3*sizeof(float)));
+
+    glEnableVertexAttribArray(1);
 
     glBindVertexArray(0);
 
@@ -168,6 +179,15 @@ int main(){
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
     glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+    GLuint lightPosLoc = glGetUniformLocation(shaderProgram, "lightPos");
+    GLuint viewPosLoc = glGetUniformLocation(shaderProgram, "viewPos");
+
+    glm::vec3 lightPos(2.0f, 2.0f, 2.0f);
+    glm::vec3 viewPos(0.0f, 0.0f, 3.0f);
+
+    glUniform3fv(lightPosLoc, 1, glm::value_ptr(lightPos));
+    glUniform3fv(viewPosLoc, 1, glm::value_ptr(viewPos));
 
     glEnable(GL_DEPTH_TEST);
 

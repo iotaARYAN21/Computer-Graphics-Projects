@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(lab7)
+project(lab7-part-b)
 
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
