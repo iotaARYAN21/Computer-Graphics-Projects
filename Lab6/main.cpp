@@ -141,20 +141,6 @@ int main(){
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
     
-    // point
-    // float point[] = { 0.0f, 0.0f, 0.0f }; 
-    // unsigned int pointVAO,pointVBO;
-    // glGenVertexArrays(1,&pointVAO);
-    // glGenBuffers(1,&pointVBO);
-    // glBindVertexArray(pointVAO);
-    // glBindBuffer(GL_ARRAY_BUFFER,pointVBO);
-    // glBufferData(GL_ARRAY_BUFFER, sizeof(point), point, GL_STATIC_DRAW);
-
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    // glEnableVertexAttribArray(0);
-
-    // point end
-
     glVertexAttribPointer(0,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)0);
     glVertexAttribPointer(1,3,GL_FLOAT,GL_FALSE,6*sizeof(float),(void*)(3*sizeof(float)));
     glEnableVertexAttribArray(0);
@@ -165,15 +151,9 @@ int main(){
     float rotationZ = 0.0f;
     glUseProgram(shaderProgram);
     
-    // glm::mat4 view = glm::lookAt(
-    //     glm::vec3(0.0f,0.0f,3.0f),
-    //     glm::vec3(0.0f,0.0f,0.0f),
-    //     glm::vec3(0.0f,1.0f,0.0f)
-    // );
     
     
     glm::mat4 projection  = glm::perspective(glm::radians(45.0f),800.0f/600.0f,0.1f,100.0f);
-    // if we not define the perspective and view then also it works why. -> perspective becomes bad , no clear near and far 
     int projectionLoc = glGetUniformLocation(shaderProgram,"projection");
     glUniformMatrix4fv(projectionLoc,1,GL_FALSE,glm::value_ptr(projection));
     
@@ -225,8 +205,6 @@ int main(){
         if(glfwGetKey(window,GLFW_KEY_Z)==GLFW_RELEASE)zpress=false;
         if(glfwGetKey(window,GLFW_KEY_C)==GLFW_RELEASE)zpress=false;
         
-        // glBindVertexArray(pointVAO);
-        // glDrawArrays(GL_POINTS, 0, 1); 
         
         glm::mat4 camRotation = glm::mat4(1.0f);
 
@@ -243,9 +221,6 @@ int main(){
         );
         glUniformMatrix4fv(viewLoc,1,GL_FALSE,glm::value_ptr(view));
 
-        // new model created so we need to point to it again
-
-        // glUniform1f(uniId,0.2f);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES,36,GL_UNSIGNED_INT,0);
         glPointSize(6.0f);
