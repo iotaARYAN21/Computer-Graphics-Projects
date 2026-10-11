@@ -14,21 +14,21 @@ out vec3 vertexColor;
 
 void main()
 {
-    // Transform the vertex position into world space
+    // transform the vertex position into world space
     vec3 FragPos = vec3(model * vec4(aPos, 1.0));
 
     // Transform the normal into world space
     vec3 N = normalize(mat3(transpose(inverse(model))) * aNormal);
 
-    // Calculate light and viewer directions
+    // calculate light and viewer directions
     vec3 L = normalize(lightPos - FragPos);
     vec3 V = normalize(viewPos - FragPos);
 
-    // Ambient lighting
+    // aambient lighting
     float ambientStrength = 0.2;
     vec3 ambient = ambientStrength * vec3(1.0);
 
-    // Diffuse lighting
+    // diffuse lighting
     float diff = max(dot(N, L), 0.0);
     vec3 diffuse = diff * vec3(1.0);
 
@@ -37,7 +37,7 @@ void main()
     float spec = pow(max(dot(V, R), 0.0), 32.0);
     vec3 specular = 0.5 * spec * vec3(1.0);
 
-    // Blue material color
+    // blue  color
     vec3 objectColor = vec3(0.2, 0.5, 1.0);
 
     // Combine lighting components -> calculating for each vertex

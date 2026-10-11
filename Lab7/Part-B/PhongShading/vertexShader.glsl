@@ -15,10 +15,10 @@ out vec3 Normal;
 
 void main()
 {
-    // Transform the vertex position into world space
+    // transform the vertex position into world space
     FragPos = vec3(model * vec4(aPos, 1.0));
 
-    // Normal in world space
+    // normal in world space
     Normal = mat3(transpose(inverse(model)))*aNormal;
 
     // Final position on screen
